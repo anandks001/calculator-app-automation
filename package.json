@@ -1,0 +1,37 @@
+{
+  "name": "calculator-app-automation",
+  "version": "1.0.0",
+  "description": "Automate calculator application using cypress",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandks001/calculator-app-automation.git"
+  },
+  "keywords": [],
+  "author": "Anand Sundramurthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anandks001/calculator-app-automation/issues"
+  },
+  "homepage": "https://github.com/anandks001/calculator-app-automation#readme",
+  "scripts": {
+    "lint": "eslint ./cypress",
+    "test": "cypress open",
+    "test:run": "cypress run",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
+    "test:allure": "npm run test:run && npm run report:allure"
+  },
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.28.0",
+    "@simonsmith/cypress-image-snapshot": "^5.0.2",
+    "allure-commandline": "^2.18.1",
+    "cypress-eslint-preprocessor": "^1.2.2",
+    "eslint-plugin-cypress": "^2.12.1",
+    "mocha-allure-reporter": "^1.4.0"
+  },
+  "dependencies": {
+    "cypress": "^10.3.0",
+    "eslint": "^8.20.0",
+    "typescript": "^4.7.4"
+  }
+}
