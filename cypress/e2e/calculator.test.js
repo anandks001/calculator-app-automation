@@ -14,13 +14,25 @@ describe('Calculator', () => {
       cy.visit('index.html');
     });
 
-    it.skip('Has a visual state', () => {
+    it('Has a visual state', () => {
       cy.get('h1')
         .contains('Calculator')
         .should('be.visible')
       cy.matchImageSnapshot('calculator-app');
     });
 
+    it('Supports different viewport', () => {
+        cy.viewport('ipad-2')
+        cy.matchImageSnapshot('ipad-2-calculator-app');
+        cy.viewport('ipad-mini')
+        cy.matchImageSnapshot('ipad-mini-calculator-app');
+        cy.viewport('iphone-6+')
+        cy.matchImageSnapshot('iphone-6-calculator-app');
+        cy.viewport('ipad-2', 'portrait')
+        cy.matchImageSnapshot('ipad-2-portrait-calculator-app');
+        cy.viewport('iphone-4', 'landscape')
+        cy.matchImageSnapshot('iphone-4-landscape-calculator-app');
+    });
 
     it('Displays values in the result based on key press', () => {
       cy.get('[class="container"]')
@@ -116,5 +128,18 @@ describe('Calculator', () => {
       cy.get('#result').should('have.value', '5*');
       cy.get('[value="/"]').click();
       cy.get('#result').should('have.value', '5/');
+    });
+
+    // TODO - No character limit and need to fix length validation
+    it.skip('Has character limit', () => {
+      // Try enter 30 characters
+      for(let i=0;i<30;i++){
+        cy.get('#five').click()
+      }
+      cy.get('#result')
+          .invoke('value')
+          .then((value) => {
+            expect(value).not.to.have.lengthOf(30);
+          });
     });
 });
