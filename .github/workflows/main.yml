@@ -1,0 +1,12 @@
+name: E2E
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v4.2.0
+        with:
+          browser: chrome
+      - run: npm install
+      - run: npx cypress run
